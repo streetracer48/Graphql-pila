@@ -1,5 +1,16 @@
 const express = require('express');
 const mongoose = require("mongoose")
+const bodyParser = require("body-parser");
+
+//Models
+const Recipe = require("./models/Recipe");
+const User = require("./models/User");
+
+// Bring in GraphQL-Express middleware
+const { graphiqlExpress, graphqlExpress } = require("apollo-server-express");
+const { makeExecutableSchema } = require("graphql-tools");
+
+
 // DB Config
 const db = require("./config/keys").mongoURI;
 // Initializes application

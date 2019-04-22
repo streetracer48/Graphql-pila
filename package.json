@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"nodemon server.js"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,11 @@
   },
   "homepage": "https://github.com/streetracer48/graphql-food#readme",
   "dependencies": {
+    "apollo-server-express": "^2.4.8",
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "graphql": "^14.2.1",
+    "graphql-tools": "^4.0.4",
     "mongoose": "^5.5.2",
     "nodemon": "^1.18.11"
   }
