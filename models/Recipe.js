@@ -16,7 +16,11 @@ const RecipeSchema = new Schema({
         type:String,
         required:true
     },
-    descriptions:{
+    instructions:{
+     type:String,
+     required:true
+    },
+    description:{
         type:String,
         required:true
     },
