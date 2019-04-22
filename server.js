@@ -15,6 +15,8 @@ const { typeDefs } = require("./schema")
 const { resolvers } = require("./resolvers")
 
 
+
+
 /// Create Schema
 
 const schema = makeExecutableSchema({
@@ -22,10 +24,28 @@ const schema = makeExecutableSchema({
      resolvers
 })
 
-// DB Config
-const db = require("./config/keys").mongoURI;
 // Initializes application
 const app = express();
+
+// Create GraphiQL application
+
+app.use("/graphiql", graphiqlExpress({ endpointURL: "/graphql" }));
+
+// Connect schema with Graphql
+
+app.use("/graphql", bodyParser(), graphqlExpress({ 
+    
+        schema,
+        context:{
+            Recipe,
+            User
+        }
+
+}))
+
+// DB Config
+const db = require("./config/keys").mongoURI;
+
 
 // Connect to MongoDB
 
