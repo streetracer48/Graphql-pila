@@ -12,6 +12,8 @@ type Recipe {
     username:String
 }
 
-
+type Query {
+    getAllRecipes:[Recipe]
+}
 
 `

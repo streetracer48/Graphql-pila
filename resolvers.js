@@ -1,0 +1,6 @@
+exports.resolvers = {
+    Query:{
+        getAllRecipes:() => {}
+    }
+
+}
