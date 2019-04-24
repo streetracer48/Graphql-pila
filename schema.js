@@ -16,4 +16,9 @@ type Query {
     getAllRecipes:[Recipe]
 }
 
+type Mutation {
+    addRecipe(name:String!, imageUrl:String!, description:String! category: String!, instructions: String!, username: String): Recipe
+}
+
+
 `
