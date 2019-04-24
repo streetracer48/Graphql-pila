@@ -49,6 +49,8 @@ const db = require("./config/keys").mongoURI;
 
 // Connect to MongoDB
 
+// Connect to MongoD
+
 mongoose
   .connect(db)
   .then(() => console.log("MongoDB Connected"))
