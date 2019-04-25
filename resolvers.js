@@ -37,6 +37,19 @@ exports.resolvers = {
           return newRecipe;
         },
 
+        signinUser: async (root, { username, password }, { User }) => {
+          const user = await User.findOne({ username });
+          if (!user) {
+            throw new Error("User not found");
+          }
+          const isValidPassword = await bcrypt.compare(password, user.password);
+          if (!isValidPassword) {
+            throw new Error("Invalid password");
+          }
+          //Secret word should not be like this ^^
+          return { token: createToken(user, "helloooo", "1hr") };
+        },
+
         signupUser: async (root,{username, email, password},{User})=>
         {
           const user = await User.findOne({username});
