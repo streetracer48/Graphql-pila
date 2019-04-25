@@ -12,8 +12,21 @@ type Recipe {
     username:String
 }
 
+type User {
+    _id:ID,
+    username:String! @unique,
+    password:String!
+    email:String
+    favorites:[Recipe]
+}
+
 type Query {
     getAllRecipes:[Recipe]
 }
+
+type Mutation {
+    addRecipe(name:String!, imageUrl:String!, description:String! category: String!, instructions: String!, username: String): Recipe
+}
+
 
 `
