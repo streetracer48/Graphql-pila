@@ -13,6 +13,11 @@ exports.resolvers = {
         getAllRecipes:async(root,args,{Recipe}) => {
             const allRecipes= await Recipe.find().sort({ createdDate: "desc" });
             return allRecipes
+        },
+        getAllUsers:async(root,args,{User}) =>{
+           const allUsers = await User.find().sort({createdDate: "desc"});
+
+           return allUsers
         }
     },
     Mutation: {
