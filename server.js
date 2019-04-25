@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser");
-
+const cors = require("cors");
 //Models
 const Recipe = require("./models/Recipe");
 const User = require("./models/User");
@@ -26,6 +26,8 @@ const schema = makeExecutableSchema({
 
 // Initializes application
 const app = express();
+
+app.use(cors("*"));
 
 // Create GraphiQL application
 
