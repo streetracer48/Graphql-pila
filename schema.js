@@ -12,6 +12,14 @@ type Recipe {
     username:String
 }
 
+type User {
+    _id:ID,
+    username:String! @unique,
+    password:String!
+    email:String
+    favorites:[Recipe]
+}
+
 type Query {
     getAllRecipes:[Recipe]
 }
