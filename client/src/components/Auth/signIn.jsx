@@ -1,9 +1,9 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-// import { Mutation } from "react-apollo";
+ import { Mutation } from "react-apollo";
 // import Error from "../Error";
-// import { SIGNIN_USER } from "../../queries";
+ import { SIGNIN_USER } from "../../queries";
 
 const initialState = {
   username: "",
@@ -23,15 +23,15 @@ class Signin extends React.Component {
   };
 
   handleSubmit = (event, signinUser) => {
-      console.log(event)
+      console.log(this.state)
     event.preventDefault();
-    // signinUser().then(async ({ data }) => {
-    //   // console.log(data);
-    //   localStorage.setItem("token", data.signinUser.token);
-    //   await this.props.refetch();
-    //   this.clearState();
-    //   this.props.history.push("/");
-    // });
+    signinUser().then(async ({ data }) => {
+       console.log(data);
+      localStorage.setItem("token", data.signinUser.token);
+      // await this.props.refetch();
+      this.clearState();
+      // this.props.history.push("/");
+    });
   };
 
   validateForm = () => {
@@ -46,12 +46,14 @@ class Signin extends React.Component {
     return (
       <div className="App">
         <h2 className="App">Signin</h2>
-        {/* <Mutation mutation={SIGNIN_USER} variables={{ username, password }}> */}
+        <Mutation mutation={SIGNIN_USER} variables={{ username, password }}>
+        
           {(signinUser, { data, loading, error }) => {
-            return (
+            console.log(signinUser);
+             return ( 
               <form
                 className="form"
-                onSubmit={event => this.handleSubmit(event)}
+                onSubmit={event => this.handleSubmit(event, signinUser)}
               >
                 <input
                   type="text"
@@ -69,16 +71,16 @@ class Signin extends React.Component {
                 />
                 <button
                   type="submit"
-                  disabled={loading || this.validateForm()}
+                //   disabled={loading || this.validateForm()}
                   className="button-primary"
                 >
                   Submit
                 </button>
                 {/* {error && <Error error={error} />} */}
               </form>
-            );
-          }}
-        {/* </Mutation> */}
+             ); 
+         }} 
+        </Mutation>
       </div>
     );
   }
