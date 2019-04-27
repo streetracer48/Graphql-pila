@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import {Mutation} from "react-apollo";
 import {SIGNUP_USER } from "../../queries";
+import Error from "../utlis/Errors"
 const initialState = {
     username: "",
     email: "",
