@@ -11,4 +11,15 @@ export const GET_ALL_RECIPES = gql`
       category
     }
   }
+
 `;
+
+ /* User Mutations */
+
+ export const SIGNIN_USER = gql`
+ mutation($username: String!, $password: String!) {
+   signinUser(username: $username, password: $password) {
+     token
+   }
+ }
+ `;
