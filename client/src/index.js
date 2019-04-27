@@ -4,6 +4,7 @@ import './index.css';
 import App from './components/App';
 import './components/App.css';
 import SignIn from './components/Auth/signIn';
+import SignUp from './components/Auth/Signup';
 import {
     BrowserRouter as Router,
     Route,
@@ -26,6 +27,7 @@ const Root = ({ refetch, session }) => (
         <Switch>
           <Route  path="/" exact component={App} />
           <Route  path="/login" component={SignIn} />
+          <Route  path="/register" component={SignUp} />
         </Switch>
       </Fragment>
     </Router>

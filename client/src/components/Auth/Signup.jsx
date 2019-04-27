@@ -76,7 +76,7 @@ const { username, email, password, passwordConfirmation } = this.state;
                 />
                 <button
                   type="submit"
-                //   disabled={loading || this.validateForm()}
+                  disabled={this.validateForm()}
                   className="button-primary"
                 >
                   Submit
