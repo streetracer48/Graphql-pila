@@ -18,7 +18,21 @@ exports.resolvers = {
            const allUsers = await User.find().sort({createdDate: "desc"});
 
            return allUsers
+        },
+
+        getCurrentUser: async (root, args, { currentUser, User }) => {
+          if (!currentUser) {
+            return null;
+          }
+          const user = await User.findOne({
+            username: currentUser.username
+          }).populate({
+            path: "favorites",
+            model: "Recipe"
+          });
+          return user;
         }
+    
     },
     Mutation: {
         addRecipe: async (
@@ -67,26 +81,11 @@ exports.resolvers = {
             token: createToken(newUser,"helloooo","1hr")
           }
 
-        },
-
-        getCurrentUser: async (root, args, { currentUser, User }) => {
-          if (!currentUser) {
-            return null;
-          }
-          const user = await User.findOne({
-            username: currentUser.username
-          }).populate({
-            path: "favorites",
-            model: "Recipe"
-          });
-          return user;
         }
-      }
-
-
 
         
     }
 
     
 
+}
