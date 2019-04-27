@@ -24,6 +24,18 @@ const initialState = {
         return isInvalid;
       }
 
+      handleSubmit = (event, signupUser) => {
+        event.preventDefault();
+        console.log(this.state)
+        // signupUser().then(async ({ data }) => {
+        //   // console.log(data);
+        //   localStorage.setItem("token", data.signupUser.token);
+        //   await this.props.refetch();
+        //   this.clearState();
+        //   this.props.history.push("/");
+        // });
+      };
+
   render() {
 const { username, email, password, passwordConfirmation } = this.state;
 
@@ -32,7 +44,7 @@ const { username, email, password, passwordConfirmation } = this.state;
         <h2 className="App">Signup</h2>
             <form
                 className="form"
-                onSubmit={event => this.handleSubmit(event, signupUser)}
+                onSubmit={event => this.handleSubmit(event,)}
               >
                 <input
                   type="text"
