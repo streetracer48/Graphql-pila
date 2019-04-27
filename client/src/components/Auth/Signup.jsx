@@ -43,7 +43,7 @@ const { username, email, password, passwordConfirmation } = this.state;
     return (
         <div className="App">
         <h2 className="App">Signup</h2>
-<Mutation mutation={SIGNUP_USER} variable={{username, email, password}}>
+<Mutation mutation={SIGNUP_USER} variables={{username, email, password}}>
 
 {(signupUser, {data, loading, error}) => {
      return (
@@ -86,7 +86,7 @@ const { username, email, password, passwordConfirmation } = this.state;
         >
           Submit
         </button>
-        {/* {error && <Error error={error} />} */}
+        {error && <Error error={error} />}
       </form>
      )
 }}
