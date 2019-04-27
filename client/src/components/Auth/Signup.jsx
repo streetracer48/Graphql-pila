@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import {Mutation} from "react-apollo";
 import {SIGNUP_USER } from "../../queries";
 import Error from "../utlis/Errors"
+import {withRouter} from 'react-router-dom'
 const initialState = {
     username: "",
     email: "",
@@ -13,6 +14,9 @@ const initialState = {
  class Signup extends Component {
 
     state = { ...initialState };
+    clearState = () => {
+        this.setState({ ...initialState });
+      };    
 
     handleChange = event => {
         const { name, value } = event.target;
@@ -31,10 +35,10 @@ const initialState = {
         console.log(this.state)
         signupUser().then(async ({ data }) => {
           console.log(data);
-        //   localStorage.setItem("token", data.signupUser.token);
+       localStorage.setItem("token", data.signupUser.token);
         //   await this.props.refetch();
-        //   this.clearState();
-        //   this.props.history.push("/");
+         this.clearState();
+           this.props.history.push("/");
         });
       };
 
@@ -99,4 +103,4 @@ const { username, email, password, passwordConfirmation } = this.state;
   }
 }
 
-export default Signup
+export default withRouter(Signup)
