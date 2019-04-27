@@ -1,8 +1,32 @@
 
 import React, { Component } from 'react'
 
+const initialState = {
+    username: "",
+    email: "",
+    password: "",
+    passwordConfirmation: ""
+  };
+
  class Signup extends Component {
+
+    state = { ...initialState };
+
+    handleChange = event => {
+        const { name, value } = event.target;
+        this.setState({ [name]: value });
+      };
+
+      validateForm = () => {
+        const { username, email, password, passwordConfirmation } = this.state;
+        const isInvalid =
+          !username || !email || !password || password !== passwordConfirmation;
+        return isInvalid;
+      }
+
   render() {
+const { username, email, password, passwordConfirmation } = this.state;
+
     return (
         <div className="App">
         <h2 className="App">Signup</h2>
