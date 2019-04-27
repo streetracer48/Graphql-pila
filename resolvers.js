@@ -68,7 +68,7 @@ exports.resolvers = {
           }
 
         },
-        
+
         getCurrentUser: async (root, args, { currentUser, User }) => {
           if (!currentUser) {
             return null;
@@ -90,4 +90,3 @@ exports.resolvers = {
 
     
 
-}
