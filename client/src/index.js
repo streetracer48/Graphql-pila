@@ -7,6 +7,7 @@ import withSession from "./components/withSession";
 import SignIn from './components/Auth/signIn';
 import SignUp from './components/Auth/Signup';
 import Navbar from "./components/Navbar";
+import RecipeDetails from "./components/Recipe/RecipeDetails";
 import {
     BrowserRouter as Router,
     Route,
@@ -45,6 +46,7 @@ const Root = ({ refetch, session }) => (
           <Route  path="/" exact component={App} />
           <Route  path="/login"  render={() => <SignIn refetch={refetch} />}/>
           <Route  path="/register" render={() => <SignUp refetch={refetch} />} />
+          <Route path="/recipes/:_id" component={RecipeDetails} />
         </Switch>
       </Fragment>
     </Router>
