@@ -51,6 +51,8 @@ app.use(async (req, res, next) => {
 
 // Connect schema with Graphql
 
+
+
 app.use(
   "/graphql",
   bodyParser.json(),
