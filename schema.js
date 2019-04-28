@@ -17,6 +17,7 @@ type User {
     username:String! @unique,
     password:String!
     email:String
+    joinDate: String
     favorites:[Recipe]
 }
 

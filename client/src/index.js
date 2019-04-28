@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import './components/App.css';
+import withSession from "./components/withSession";
 import SignIn from './components/Auth/signIn';
 import SignUp from './components/Auth/Signup';
 import {
@@ -40,18 +41,20 @@ const Root = ({ refetch, session }) => (
       <Fragment>
         <Switch>
           <Route  path="/" exact component={App} />
-          <Route  path="/login" component={SignIn} />
-          <Route  path="/register" component={SignUp} />
+          <Route  path="/login"  render={() => <SignIn refetch={refetch} />}/>
+          <Route  path="/register" render={() => <SignUp refetch={refetch} />} />
         </Switch>
       </Fragment>
     </Router>
   );
+
+  const RootWithSession = withSession(Root);
   
 
 ReactDOM.render(
 
 <ApolloProvider client={client}>
-<Root />
+<RootWithSession />
 </ApolloProvider>
 ,document.getElementById('root'));
 
