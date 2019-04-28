@@ -28,7 +28,8 @@ type Token {
 type Query {
     getAllRecipes:[Recipe],
     getAllUsers:[User],
-    getCurrentUser: User
+    getCurrentUser: User,
+    getRecipe(_id: ID!): Recipe
 }
 
 type Mutation {
