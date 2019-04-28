@@ -1,6 +1,7 @@
 import React, {Fragment} from "react"
 
 import {NavLink} from "react-router-dom"
+import Signout from "../components/Auth/Signout"
 
 const Navbar = ({ session }) => (
     <nav>
@@ -51,10 +52,10 @@ const Navbar = ({ session }) => (
         <NavLink to="/search">Search</NavLink>
       </li>
       <li>
-        <NavLink to="/signin">Signin</NavLink>
+        <NavLink to="/login">Signin</NavLink>
       </li>
       <li>
-        <NavLink to="/signup">Signup</NavLink>
+        <NavLink to="/register">Signup</NavLink>
       </li>
     </ul>
   );
