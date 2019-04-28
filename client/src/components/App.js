@@ -2,6 +2,7 @@ import React from 'react';
 import { Query } from "react-apollo";
 import { GET_ALL_RECIPES } from "../queries/index";
 import Spinner from "./Spinner";
+import RecipeItem from "./../components/Recipe/RecipeItem";
 const App = ()=> {
   return (
     <div className="App">
@@ -11,13 +12,16 @@ const App = ()=> {
         <Query query={GET_ALL_RECIPES}>
 
         { ({ data, loading, error }) =>{
+          console.log(data)
           if(loading) return <Spinner/>;
+
           if (error) return <div>Error</div>;
 
           return (
             <div>
+              
             {data.getAllRecipes.map(recipe => (
-              <h1>{recipe.name}</h1>
+            <RecipeItem key={recipe._id} {...recipe} />
              ))} 
             </div>
                     
