@@ -11,7 +11,15 @@ export const GET_ALL_RECIPES = gql`
       category
     }
   }
+`;
 
+export const GET_RECIPE = gql`
+  query($_id: ID!) {
+    getRecipe(_id: $_id) {
+      ...CompleteRecipe
+    }
+  }
+  ${recipeFragments.recipe}
 `;
 
 export const GET_CURRENT_USER = gql`
