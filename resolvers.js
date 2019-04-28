@@ -10,6 +10,10 @@ const createToken = (user, secret, expiresIn) => {
 
 exports.resolvers = {
     Query:{
+      getRecipe: async (root, { _id }, { Recipe }) => {
+        const recipe = await Recipe.findOne({ _id });
+        return recipe;
+      },
         getAllRecipes:async(root,args,{Recipe}) => {
             const allRecipes= await Recipe.find().sort({ createdDate: "desc" });
             return allRecipes
