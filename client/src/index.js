@@ -6,6 +6,7 @@ import './components/App.css';
 import withSession from "./components/withSession";
 import SignIn from './components/Auth/signIn';
 import SignUp from './components/Auth/Signup';
+import Navbar from "./components/Navbar";
 import {
     BrowserRouter as Router,
     Route,
@@ -39,6 +40,7 @@ const client = new ApolloClient({
 const Root = ({ refetch, session }) => (
     <Router>
       <Fragment>
+      <Navbar session={session} />
         <Switch>
           <Route  path="/" exact component={App} />
           <Route  path="/login"  render={() => <SignIn refetch={refetch} />}/>
