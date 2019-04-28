@@ -28,9 +28,9 @@ class Signin extends React.Component {
     signinUser().then(async ({ data }) => {
        console.log(data);
       localStorage.setItem("token", data.signinUser.token);
-      // await this.props.refetch();
+      await this.props.refetch();
       this.clearState();
-      // this.props.history.push("/");
+      this.props.history.push("/");
     });
   };
 
