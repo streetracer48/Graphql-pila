@@ -47,6 +47,13 @@ class AddRecipe extends Component {
           }
         });
       };
+
+      validateForm = () => {
+        const { name, imageUrl, category, description, instructions } = this.state;
+        const isInvalid =
+          !name || !imageUrl || !category || !description || !instructions;
+        return isInvalid;
+      };
      render() {
         const {
             name,
@@ -126,7 +133,7 @@ variables={{
             value={instructions}
           />
           <button
-// nam            disabled={loading || this.validateForm()}
+    disabled={loading || this.validateForm()}
             type="submit"
             className="button-primary"
           >
