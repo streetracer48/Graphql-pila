@@ -22,8 +22,9 @@ class AddRecipe extends Component {
       };
 
       componentDidMount() {
+          console.log(this.props.session.getCurrentUser.username)
         this.setState({
-          username: this.props.session.getCurrentUser.username
+        username: this.props.session.getCurrentUser.username
         });
       }
       handleSubmit = (event, addRecipe) => {
@@ -100,19 +101,19 @@ variables={{
             value={description}
           />
           <label htmlFor="instructions">Recipe Instructions</label>
-          <CKEditor
+          {/* <CKEditor
             name="instructions"
             content={instructions}
             events={{ change: this.handleEditorChange }}
-          />
-          {/* <textarea
+          /> */}
+          <textarea
             name="instructions"
             placeholder="Add instructions"
             onChange={this.handleChange}
             value={instructions}
-          /> */}
+          />
           <button
-            disabled={loading || this.validateForm()}
+// nam            disabled={loading || this.validateForm()}
             type="submit"
             className="button-primary"
           >
