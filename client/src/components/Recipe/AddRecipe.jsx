@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-
+import { Mutation } from "react-apollo";
 const initialState = {
     name: "",
     imageUrl: "",
@@ -13,6 +13,11 @@ const initialState = {
 
 class AddRecipe extends Component {
     state = { ...initialState };
+
+    handleChange = event => {
+        const { name, value } = event.target;
+        this.setState({ [name]: value });
+      };
 
      render() {
          return(
