@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { Mutation } from "react-apollo";
+import { ADD_RECIPE} from "../../queries";
 const initialState = {
     name: "",
     imageUrl: "",
@@ -20,10 +21,29 @@ class AddRecipe extends Component {
       };
 
      render() {
+        const {
+            name,
+            imageUrl,
+            category,
+            description,
+            instructions,
+            username
+          } = this.state;
+
          return(
-<div>
+<Mutation 
+mutation={ADD_RECIPE}
+variables={{
+    name,
+    imageUrl,
+    category,
+    description,
+    instructions,
+    username
+  }}
+>
     Hello add recipe
-</div>
+</Mutation>
          )
      }
 }
