@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import { Mutation } from "react-apollo";
 import CKEditor from "react-ckeditor-component";
-import { ADD_RECIPE} from "../../queries";
+import { ADD_RECIPE, GET_ALL_RECIPES} from "../../queries";
+import {withRouter} from 'react-router-dom'
 const initialState = {
     name: "",
     imageUrl: "",
@@ -24,7 +25,7 @@ class AddRecipe extends Component {
       componentDidMount() {
           console.log(this.props.session.getCurrentUser.username)
         this.setState({
-        username: this.props.session.getCurrentUser.username
+        username: !this.props.session.getCurrentUser.username?'':this.props.session.getCurrentUser.username
         });
       }
       handleSubmit = (event, addRecipe) => {
@@ -32,8 +33,26 @@ class AddRecipe extends Component {
         addRecipe().then(({ data }) => {
           console.log(data);
         //   this.clearState();
-        //   this.props.history.push("/");
+         this.props.history.push("/");
         });
+      };
+
+      updateCache = (cache, { data: { addRecipe } }) => {
+        const { getAllRecipes } = cache.readQuery({ query: GET_ALL_RECIPES });
+    
+        cache.writeQuery({
+          query: GET_ALL_RECIPES,
+          data: {
+            getAllRecipes: [addRecipe, ...getAllRecipes]
+          }
+        });
+      };
+
+      validateForm = () => {
+        const { name, imageUrl, category, description, instructions } = this.state;
+        const isInvalid =
+          !name || !imageUrl || !category || !description || !instructions;
+        return isInvalid;
       };
      render() {
         const {
@@ -56,6 +75,7 @@ variables={{
     instructions,
     username
   }}
+  update={this.updateCache}
 >
 {(addRecipe, { data, loading, error }) => {
     return (
@@ -113,7 +133,7 @@ variables={{
             value={instructions}
           />
           <button
-// nam            disabled={loading || this.validateForm()}
+    disabled={loading || this.validateForm()}
             type="submit"
             className="button-primary"
           >
@@ -129,6 +149,6 @@ variables={{
      }
 }
 
-export default AddRecipe
+export default withRouter(AddRecipe)
 
 
