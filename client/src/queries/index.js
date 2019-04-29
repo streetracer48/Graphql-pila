@@ -46,10 +46,34 @@ export const GET_CURRENT_USER = gql`
  }
  `;
 
+
  export const SIGNUP_USER = gql`
   mutation($username:String! $email:String! $password:String!){
     signupUser(username:$username, email:$email, password:$password){
       token
     }
   }
+ `;
+
+ export const ADD_RECIPE = gql`
+ mutation (
+  $name: String!
+  $imageUrl: String!
+  $description: String!
+  $category: String!
+  $instructions: String!
+  $username: String
+ ) {
+  addRecipe(
+    name: $name
+    imageUrl: $imageUrl
+    description: $description
+    category: $category
+    instructions: $instructions
+    username: $username
+  ){
+    ...CompleteRecipe
+  }
+ }
+ ${recipeFragments.recipe}
  `;
