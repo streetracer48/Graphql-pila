@@ -12,10 +12,13 @@ const initialState = {
 
 
 class AddRecipe extends Component {
+    state = { ...initialState };
 
      render() {
          return(
-
+<div>
+    Hello add recipe
+</div>
          )
      }
 }
