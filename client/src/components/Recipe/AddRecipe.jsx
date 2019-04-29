@@ -21,6 +21,19 @@ class AddRecipe extends Component {
         this.setState({ [name]: value });
       };
 
+      componentDidMount() {
+        this.setState({
+          username: this.props.session.getCurrentUser.username
+        });
+      }
+      handleSubmit = (event, addRecipe) => {
+        event.preventDefault();
+        addRecipe().then(({ data }) => {
+          console.log(data);
+        //   this.clearState();
+        //   this.props.history.push("/");
+        });
+      };
      render() {
         const {
             name,
