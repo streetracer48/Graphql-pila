@@ -30,7 +30,7 @@ type Query {
     getAllUsers:[User],
     getCurrentUser: User,
     getRecipe(_id: ID!): Recipe,
-    searchRecipes(searchTerm:String):[Recipe]
+    searchRecipes(searchTerm: String): [Recipe]
 }
 
 type Mutation {
