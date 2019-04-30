@@ -29,7 +29,8 @@ type Query {
     getAllRecipes:[Recipe],
     getAllUsers:[User],
     getCurrentUser: User,
-    getRecipe(_id: ID!): Recipe
+    getRecipe(_id: ID!): Recipe,
+    searchRecipes(searchTerm:String):[Recipe]
 }
 
 type Mutation {
