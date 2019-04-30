@@ -8,6 +8,7 @@ import SignIn from './components/Auth/signIn';
 import SignUp from './components/Auth/Signup';
 import Navbar from "./components/Navbar";
 import RecipeDetails from "./components/Recipe/RecipeDetails";
+import Search from "./components/Search/"
 import {
     BrowserRouter as Router,
     Route,
@@ -51,6 +52,7 @@ const Root = ({ refetch, session }) => (
           render={() => <AddRecipe session={session} />}
         />
           <Route path="/recipes/:_id" component={RecipeDetails} />
+          <Route path="/search" component={Search} />
         </Switch>
       </Fragment>
     </Router>
