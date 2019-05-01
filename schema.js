@@ -30,6 +30,7 @@ type Query {
     getAllUsers:[User],
     getCurrentUser: User,
     getRecipe(_id: ID!): Recipe,
+    getUserRecipes(username: String!): [Recipe],
     searchRecipes(searchTerm: String): [Recipe]
 }
 

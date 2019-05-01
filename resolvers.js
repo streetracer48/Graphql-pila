@@ -40,6 +40,13 @@ exports.resolvers = {
             const allRecipes= await Recipe.find().sort({ createdDate: "desc" });
             return allRecipes
         },
+
+        getUserRecipes: async (root, { username }, { Recipe }) => {
+          const userRecipes = await Recipe.find({ username }).sort({
+            createdDate: "desc"
+          });
+          return userRecipes;
+        },
         getAllUsers:async(root,args,{User}) =>{
            const allUsers = await User.find().sort({createdDate: "desc"});
 
