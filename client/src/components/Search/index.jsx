@@ -3,6 +3,7 @@ import React from "react";
 
 import { ApolloConsumer } from "react-apollo";
 import { SEARCH_RECIPES } from "../../queries";
+import SearchItem from "./SearchItem"
 class Search extends React.Component {
     state = {
       searchResults: []
@@ -34,6 +35,11 @@ class Search extends React.Component {
                 this.handleChange(data);
               }}
             />
+             <ul>
+              {searchResults.map(recipe => (
+                <SearchItem key={recipe._id} {...recipe} />
+              ))}
+            </ul>
                    </div>
                )}
            </ApolloConsumer>
