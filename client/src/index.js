@@ -18,6 +18,7 @@ import {
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 import AddRecipe from "./components/Recipe/AddRecipe";
+import Profile from "./components/Profile/";
 const client = new ApolloClient({
     uri:"http://localhost:4444/graphql",
     fetchOptions:{
@@ -53,6 +54,7 @@ const Root = ({ refetch, session }) => (
         />
           <Route path="/recipes/:_id" component={RecipeDetails} />
           <Route path="/search" component={Search} />
+          <Route path="/profile" render={() => <Profile session={session} />} />
         </Switch>
       </Fragment>
     </Router>
