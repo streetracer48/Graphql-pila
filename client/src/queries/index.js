@@ -13,6 +13,16 @@ export const GET_ALL_RECIPES = gql`
   }
 `;
 
+export const SEARCH_RECIPES = gql`
+  query($searchTerm: String) {
+    searchRecipes(searchTerm: $searchTerm) {
+      _id
+      name
+      likes
+    }
+  }
+`;
+
 export const GET_RECIPE = gql`
   query($_id: ID!) {
     getRecipe(_id: $_id) {
@@ -77,3 +87,14 @@ export const GET_CURRENT_USER = gql`
  }
  ${recipeFragments.recipe}
  `;
+
+ export const GET_USER_RECIPES = gql`
+   query($username:String!) {
+    getUserRecipes(username: $username) {
+      _id
+      name
+      likes
+    }
+   }
+ 
+ `
