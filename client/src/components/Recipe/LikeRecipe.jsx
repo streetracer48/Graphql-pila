@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 
 import { Mutation } from "react-apollo";
-
+import withSession from "../withSession";
 class LikeRecipe extends Component {
 
     state = {
@@ -12,8 +12,9 @@ class LikeRecipe extends Component {
       
     
     render () {
-
+console.log(this.props)
         const { liked, username } = this.state;
+        const { _id } = this.props;
         return(
             <button>
                 Like
@@ -25,4 +26,4 @@ class LikeRecipe extends Component {
 
 }
 
-export default LikeRecipe
+export default withSession(LikeRecipe)
