@@ -96,5 +96,13 @@ export const GET_CURRENT_USER = gql`
       likes
     }
    }
- 
  `
+
+ export const LIKE_RECIPE = gql`
+  mutation($_id: ID!, $username: String!) {
+    likeRecipe(_id: $_id, username: $username) {
+      ...LikeRecipe
+    }
+  }
+  ${recipeFragments.like}
+`;
