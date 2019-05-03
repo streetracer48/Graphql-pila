@@ -2,7 +2,7 @@ import React, {Component} from "react";
 
 import { Mutation } from "react-apollo";
 import withSession from "../withSession";
-import { LIKE_RECIPE} from "../../queries";
+import { LIKE_RECIPE, GET_RECIPE} from "../../queries";
 class LikeRecipe extends Component {
 
     state = {
@@ -25,6 +25,23 @@ class LikeRecipe extends Component {
 console.log(data)
       })
       };
+
+      updateLike = (cache, { data: { likeRecipe } }) => {
+        const { _id } = this.props;
+        const { getRecipe } = cache.readQuery({
+          query: GET_RECIPE,
+          variables: { _id }
+        });
+    
+        cache.writeQuery({
+          query: GET_RECIPE,
+          variables: { _id },
+          data: {
+            getRecipe: { ...getRecipe, likes: likeRecipe.likes + 1 }
+          }
+        });
+      };
+    
     
     render () {
         const { liked, username } = this.state;
@@ -34,7 +51,7 @@ console.log(data)
             <Mutation
               mutation={LIKE_RECIPE}
               variables={{ _id, username }}
-            //   update={this.updateUnlike}
+             update={this.updateLike}
             >
                   {likeRecipe =>
                     username && (
