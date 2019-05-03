@@ -35,6 +35,7 @@ type Query {
 }
 
 type Mutation {
+    likeRecipe(_id: ID!, username: String!): Recipe
     addRecipe(name:String!, imageUrl:String!, description:String! category: String!, instructions: String!, username: String): Recipe,
     signupUser(username:String!, email:String!, password:String!):Token
     signinUser(username: String!, password: String!): Token
