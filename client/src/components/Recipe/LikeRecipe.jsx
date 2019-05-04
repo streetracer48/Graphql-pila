@@ -58,6 +58,23 @@ class LikeRecipe extends Component {
         });
       };
     
+
+      updateUnlike = (cache, { data: { unlikeRecipe } }) => {
+        const { _id } = this.props;
+        const { getRecipe } = cache.readQuery({
+          query: GET_RECIPE,
+          variables: { _id }
+        });
+    
+        cache.writeQuery({
+          query: GET_RECIPE,
+          variables: { _id },
+          data: {
+            getRecipe: { ...getRecipe, likes: unlikeRecipe.likes - 1 }
+          }
+        });
+      };
+    
     
     render () {
         const { liked, username } = this.state;
