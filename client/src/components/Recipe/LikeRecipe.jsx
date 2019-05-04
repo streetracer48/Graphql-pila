@@ -19,11 +19,27 @@ class LikeRecipe extends Component {
           })
         }
       }
-      
-      handleClick = (likeRecipe) => {
-      likeRecipe().then(({ data}) => {
-console.log(data)
-      })
+      handleClick = (likeRecipe, unlikeRecipe) => {
+        this.setState(
+          prevState => ({
+            liked: !prevState.liked
+          }),
+          () => this.handleLike(likeRecipe, unlikeRecipe)
+        );
+      };
+    
+      handleLike = (likeRecipe, unlikeRecipe) => {
+        if (this.state.liked) {
+          likeRecipe().then(async ({ data }) => {
+            // console.log(data);
+            await this.props.refetch();
+          });
+        } else {
+          unlikeRecipe().then(async ({ data }) => {
+            // console.log(data);
+            await this.props.refetch();
+          });
+        }
       };
 
       updateLike = (cache, { data: { likeRecipe } }) => {
