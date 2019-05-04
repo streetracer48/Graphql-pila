@@ -2,7 +2,7 @@ import React, {Component} from "react";
 
 import { Mutation } from "react-apollo";
 import withSession from "../withSession";
-import { LIKE_RECIPE, GET_RECIPE} from "../../queries";
+import { LIKE_RECIPE, GET_RECIPE, UNLIKE_RECIPE} from "../../queries";
 class LikeRecipe extends Component {
 
     state = {
@@ -77,27 +77,34 @@ class LikeRecipe extends Component {
     
     
     render () {
-        const { liked, username } = this.state;
-        const { _id } = this.props;
-
-        return (
+      const { liked, username } = this.state;
+      const { _id } = this.props;
+      return (
+        <Mutation
+          mutation={UNLIKE_RECIPE}
+          variables={{ _id, username }}
+          update={this.updateUnlike}
+        >
+          {unlikeRecipe => (
             <Mutation
               mutation={LIKE_RECIPE}
               variables={{ _id, username }}
-             update={this.updateLike}
+              update={this.updateLike}
             >
-                  {likeRecipe =>
-                    username && (
-                      <button
-                        className="like-button"
-                        onClick={() => this.handleClick(likeRecipe)}
-                      >
-                       Like
-                      </button>
-                    )
-                  }
+              {likeRecipe =>
+                username && (
+                  <button
+                    className="like-button"
+                    onClick={() => this.handleClick(likeRecipe, unlikeRecipe)}
+                  >
+                    {liked ? "Unlike" : "Like"}
+                  </button>
+                )
+              }
             </Mutation>
-          );
+          )}
+        </Mutation>
+      );
     }
 }
 
